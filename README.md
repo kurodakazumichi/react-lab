@@ -106,22 +106,22 @@
 - [排出の代替](#alternatives-to-ejecting)
 - [その他なにか？](#something-missing)
 
-## Updating to New Releases
+## 新リリースに更新
 
-Create React App is divided into two packages:
+Create React Appは2つのパッケージに分かれています：
 
-- `create-react-app` is a global command-line utility that you use to create new projects.
-- `react-scripts` is a development dependency in the generated projects (including this one).
+- `create-react-app` はグローバルコマンドユーティリティで、新しいプロジェクトを作るために使います。
+- `react-scripts` は、生成されたプロジェクト（これを含む）の開発依存です。.
 
-You almost never need to update `create-react-app` itself: it delegates all the setup to `react-scripts`.
+create-react-app自体を更新する必要はほとんどありません。すべてのセットアップを`react-scripts`に委任します。
+`create-react-app`を実行するとき、それは常に最新バージョンの`react-scripts`のプロジェクト作成します。
+したがって、作られた新しいアプリケーションでは全ての新しい機能と改善が自動的に得られます。
 
-When you run `create-react-app`, it always creates the project with the latest version of `react-scripts` so you’ll get all the new features and improvements in newly created apps automatically.
+既存のプロジェクトを新しいバージョンの`react-script`に更​​新するには、[open the changelog](https://github.com/facebook/create-react-app/blob/master/CHANGELOG.md)を開き、現在使用しているバージョンを確認してください（不明な場合はこのフォルダ内のpackage.jsonを確認してください）。新しいバージョンの移行手順を適用します。
 
-To update an existing project to a new version of `react-scripts`, [open the changelog](https://github.com/facebook/create-react-app/blob/master/CHANGELOG.md), find the version you’re currently on (check `package.json` in this folder if you’re not sure), and apply the migration instructions for the newer versions.
+ほとんどの場合、package.jsonの`react-scripts`バージョンをバンプし、このフォルダにnpm install（またはyarn installation）を実行するだけで十分ですが、[変更履歴](https://github.com/facebook/create-react-app/blob/master/CHANGELOG.md)の変更についてはchangelogと相談してください。
 
-In most cases bumping the `react-scripts` version in `package.json` and running `npm install` (or `yarn install`) in this folder should be enough, but it’s good to consult the [changelog](https://github.com/facebook/create-react-app/blob/master/CHANGELOG.md) for potential breaking changes.
-
-We commit to keeping the breaking changes minimal so you can upgrade `react-scripts` painlessly.
+改ざんの変更を最小限に抑えることで、反応スクリプトを無駄なくアップグレードできるようにします。
 
 ## Sending Feedback
 
