@@ -23,7 +23,7 @@
 - [ページタイトルの変更](#changing-the-page-title)
 - [依存関係のインストール](#installing-a-dependency)
 - [コンポーネントのインポート](#importing-a-component)
-- [コード分割]](#code-splitting)
+- [コード分割](#code-splitting)
 - [スタイルシートの追加](#adding-a-stylesheet)
 - [CSS Modules スタイルシートの追加](#adding-a-css-modules-stylesheet)
 - [Sass スタイルシートの追加](#adding-a-sass-stylesheet)
@@ -57,7 +57,7 @@
 - [静的HTMLファイルの事前レンダリング](#pre-rendering-into-static-html-files)
 - [サーバーからページへデータを注入する](#injecting-data-from-the-server-into-the-page)
 - [テストの実行](#テスト実行)
-  - [ファイル名の表記規則](#filename-conventions)
+  - [ファイル名の表記規則](#ファイル名の表記規則)
   - [コマンドラインインターフェース](#command-line-interface)
   - [バージョンコントロール統合](#version-control-integration)
   - [テストの作成](#writing-tests)
@@ -1321,17 +1321,19 @@ Jestは[jsdom](https://github.com/tmpvar/jsdom)のウィンドウのようなブ
 必要に応じて、ブラウザのエンドツーエンドテストに別のツールを使用することをお勧めします。
 こちらはCreate React Appの範囲を超えています。
 
-### Filename Conventions
+### ファイル名の表記規則
 
-Jest will look for test files with any of the following popular naming conventions:
+Jestはテストファイルを以下の一般的な命名規則にしたがって探します。
 
-- Files with `.js` suffix in `__tests__` folders.
-- Files with `.test.js` suffix.
-- Files with `.spec.js` suffix.
+- `__tests__`と言うフォルダの中にある`.js`ファイル
+- `test.js`というsuffixがあるファイル
+- `.spec.js`というsuffixがあるファイル
 
-The `.test.js` / `.spec.js` files (or the `__tests__` folders) can be located at any depth under the `src` top level folder.
+`.test.js`、`.spec.js`ファイル(または`__test__`フォルダ)は最上位のsrcフォルダの下の任意の階層に配置できます。
 
-We recommend to put the test files (or `__tests__` folders) next to the code they are testing so that relative imports appear shorter. For example, if `App.test.js` and `App.js` are in the same folder, the test just needs to `import App from './App'` instead of a long relative path. Colocation also helps find tests more quickly in larger projects.
+テストファイル（または__tests__フォルダ）をテストするコードの隣に置くことにより、相対的なインポートが短く表示されるようにすることをお勧めします。
+たとえば、App.test.jsとApp.jsが同じフォルダにある場合、テストでは長い相対パスの代わりに './App'からAppをインポートするだけです。
+コロケーションは、大規模なプロジェクトでテストをより迅速に見つけるのにも役立ちます。
 
 ### Command Line Interface
 
