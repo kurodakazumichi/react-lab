@@ -1,35 +1,67 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+
+// Part4 import list
 import MyHelloText from './atoms/Text/MyHelloText'
 import MyTypeDebug from './atoms/Debug/MyTypeDebug';
 import MyAttrText from './atoms/Text/MyAttrText';
 import MyHelloContentText from './atoms/Text/MyHelloContentText';
 import MyBook from './molecules/MyBooks/MyBooks';
 
+// Part5 import list
+import MyProp, { Member } from './atoms/Debug/MyProp';
+
+/**
+ * アプリケーション
+ */
 class App extends Component 
 {
-  renderMyAttrText(){
+  /**
+   * 速習React part4
+   */
+  part4 () {
     const data = {
       name:'山田権左衛門',
       age: 18,
       sex: '男'
     };
-
-    return (
-      <MyAttrText {...data} />
-    )
-  }
-
-  renderMyBook() {
     const book = {
       isbn: 'WGS-JST-001',
       title:'速習 webpack',
       price:454,
       published:'WINGSプロジェクト'
     };
+    return (
+      <div className="part4">
+          <MyHelloText />
+          <MyTypeDebug value="山田" />
+          <MyTypeDebug value={ '鈴木' } />
+          <MyTypeDebug value={ 108 }  />
+          <MyTypeDebug value={ true } />
+          <MyTypeDebug value={ ['うめ', 'もも', 'さくら'] } />
+          <MyTypeDebug value={ {name: '山田太郎', age: 40} } />
+          <MyTypeDebug value={ () => console.log('Hoge') } />
+          <MyAttrText {...data} />
+          <MyHelloContentText>山田</MyHelloContentText>
+          <MyBook info={book} />
+      </div>
+    );
+  }
 
-    return <MyBook info={book} />
+  /**
+   * 速習React part5
+   */
+  part5 () {
+    return (
+      <div className="part5">
+        <MyProp prop1={new Member()} />
+        <MyProp prop2="男" />
+        <MyProp prop3={new Member()} />
+        <MyProp prop4={[10, '梅']} />
+        <MyProp prop5={{age:40, sex:'男'}} />
+      </div>
+    )
   }
 
   render() {
@@ -50,17 +82,9 @@ class App extends Component
           </a>
         </header>
         <div>
-          <MyHelloText name="山田" />
-          <MyTypeDebug value="山田" />
-          <MyTypeDebug value={ '鈴木' } />
-          <MyTypeDebug value={ 108 }  />
-          <MyTypeDebug value={ true } />
-          <MyTypeDebug value={ ['うめ', 'もも', 'さくら'] } />
-          <MyTypeDebug value={ {name: '山田太郎', age: 40} } />
-          <MyTypeDebug value={ () => console.log('Hoge') } />
-          {this.renderMyAttrText()}
-          <MyHelloContentText>山田</MyHelloContentText>
-          {this.renderMyBook()}
+
+          {this.part4()}
+          {this.part5()}
         </div>
       </div>
     );

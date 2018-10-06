@@ -5,6 +5,7 @@
 
 ## 目次
 
+- [追記](#追記)
 - [新リリースに更新](#updating-to-new-releases)
 - [フィードバックを送る](#sending-feedback)
 - [フォルダ構成](#folder-structure)
@@ -105,6 +106,16 @@
   - [Moment.jsローカルが見つからない](#momentjs-locales-are-missing)
 - [排出の代替](#alternatives-to-ejecting)
 - [その他なにか？](#something-missing)
+
+## 追記
+
+create-react-appで生成したプロジェクトに追加した内容を記載します。
+
+```
+# yarnだとうまく動かなかったのでnpmで入れ直した。
+# yarn add prop-types
+npm install --save prop-types
+```
 
 ## 新リリースに更新
 
