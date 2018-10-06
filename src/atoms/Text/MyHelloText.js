@@ -8,6 +8,16 @@ export default class MyHelloText extends Component
   }
 }
 
+/**
+ * 型定義
+ */
 MyHelloText.propTypes = {
   name: PropTypes.string.isRequired
+};
+
+/**
+ * 規定値を定義
+ */
+MyHelloText.defaultProps = {
+  name: '名無しの権兵衛'
 };
