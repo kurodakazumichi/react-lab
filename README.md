@@ -60,7 +60,7 @@
   - [ファイル名の表記規則](#ファイル名の表記規則)
   - [コマンドラインインターフェース](#コマンドラインインターフェース)
   - [バージョンコントロール統合](#バージョンコントロール統合)
-  - [テストの作成](#writing-tests)
+  - [テストの作成](#テストの作成)
   - [コンポーネントのテスト](#testing-components)
   - [サードパーティー製のアサーションライブラリの使い方](#using-third-party-assertion-libraries)
   - [テスト環境の初期化](#initializing-test-environment)
@@ -1356,11 +1356,10 @@ Jestは、最後のコミット以降に変更されたファイルに関連す�
 
 Jestは、[continuous integration](#continuous-integration)サーバー上で、またはプロジェクトがGitまたはMercurialリポジトリ内にない場合、常にすべてのテストを実行します。
 
-### Writing Tests
-
-To create tests, add `it()` (or `test()`) blocks with the name of the test and its code. You may optionally wrap them in `describe()` blocks for logical grouping but this is neither required nor recommended.
-
-Jest provides a built-in `expect()` global function for making assertions. A basic test could look like this:
+### テストの作成
+テストを作成するには、テスト名とコードを`it()`(または`test()`)ブロックに追加します。
+オプションで論理グループ化のために`describe()`ブロックにラップすることもできますが、これは必須でも推奨もしていません。
+Jestは、アサーションを作成するための組み込みのexpect（）グローバル関数を提供します。基本的なテストは次のようになります。
 
 ```js
 import sum from './sum';
@@ -1371,8 +1370,9 @@ it('sums numbers', () => {
 });
 ```
 
-All `expect()` matchers supported by Jest are [extensively documented here](https://facebook.github.io/jest/docs/en/expect.html#content).<br>
-You can also use [`jest.fn()` and `expect(fn).toBeCalled()`](https://facebook.github.io/jest/docs/en/expect.html#tohavebeencalled) to create “spies” or mock functions.
+Jestでサポートされているexpect（）マッチャーは全て、[ここにドキュメントがあります](https://facebook.github.io/jest/docs/en/expect.html#content)。
+
+また[`jest.fn()` and `expect(fn).toBeCalled()`](https://facebook.github.io/jest/docs/en/expect.html#tohavebeencalled)を使って"スパイ"、または"mockファンクション"を作ることができます。
 
 ### Testing Components
 
