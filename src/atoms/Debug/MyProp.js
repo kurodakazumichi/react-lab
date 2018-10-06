@@ -17,6 +17,13 @@ export default class MyProp extends Component
 }
 
 MyProp.propTypes = {
+    /** 特定のインスタンスかどうか */
     prop1: PropTypes.instanceOf(Member),
+    /** 指定された値が指定された値のいずれかであること */
     prop2: PropTypes.oneOf(['男', '女', '不明']),
+    /** 指定された値が指定された型のいずれかであること */
+    prop3: PropTypes.oneOfType([
+        PropTypes.string, PropTypes.number, PropTypes.bool
+    ]),
+
 }
