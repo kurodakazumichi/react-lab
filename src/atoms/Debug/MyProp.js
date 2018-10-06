@@ -26,5 +26,11 @@ MyProp.propTypes = {
         PropTypes.string, PropTypes.number, PropTypes.bool
     ]),
     /** numberの配列であること */
-    prop4: PropTypes.arrayOf(PropTypes.number)
+    prop4: PropTypes.arrayOf(PropTypes.number),
+    /** object配下のメンバーが指定通りであること */
+    prop5: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        age: PropTypes.number,
+        sex: PropTypes.oneOf(['男', '女', '不明'])
+    })
 }
