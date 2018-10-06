@@ -56,6 +56,7 @@ class App extends Component
     return (
       <div className="part5">
         <MyProp prop1={new Member()} />
+        <MyProp prop2="男" />
       </div>
     )
   }

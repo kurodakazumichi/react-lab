@@ -17,5 +17,6 @@ export default class MyProp extends Component
 }
 
 MyProp.propTypes = {
-    prop1: PropTypes.instanceOf(Member)
+    prop1: PropTypes.instanceOf(Member),
+    prop2: PropTypes.oneOf(['男', '女', '不明']),
 }
