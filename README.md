@@ -23,7 +23,7 @@
 - [ページタイトルの変更](#changing-the-page-title)
 - [依存関係のインストール](#installing-a-dependency)
 - [コンポーネントのインポート](#importing-a-component)
-- [コード分割]](#code-splitting)
+- [コード分割](#code-splitting)
 - [スタイルシートの追加](#adding-a-stylesheet)
 - [CSS Modules スタイルシートの追加](#adding-a-css-modules-stylesheet)
 - [Sass スタイルシートの追加](#adding-a-sass-stylesheet)
@@ -56,15 +56,15 @@
 - [サーバー上で動的な`<meta>`を生成する](#generating-dynamic-meta-tags-on-the-server)
 - [静的HTMLファイルの事前レンダリング](#pre-rendering-into-static-html-files)
 - [サーバーからページへデータを注入する](#injecting-data-from-the-server-into-the-page)
-- [テストの実行]](#running-tests)
-  - [ファイル名の表記規則](#filename-conventions)
-  - [コマンドラインインターフェース](#command-line-interface)
-  - [バージョンコントロール統合](#version-control-integration)
-  - [テストの作成](#writing-tests)
-  - [コンポーネントのテスト](#testing-components)
-  - [サードパーティー製のアサーションライブラリの使い方](#using-third-party-assertion-libraries)
-  - [テスト環境の初期化](#initializing-test-environment)
-  - [テストの集中と除外](#focusing-and-excluding-tests)
+- [テストの実行](#テスト実行)
+  - [ファイル名の表記規則](#ファイル名の表記規則)
+  - [コマンドラインインターフェース](#コマンドラインインターフェース)
+  - [バージョンコントロール統合](#バージョンコントロール統合)
+  - [テストの作成](#テストの作成)
+  - [コンポーネントのテスト](#コンポーネントのテスト)
+  - [サードパーティー製のアサーションライブラリの使い方](#サードパーティー製のアサーションライブラリの使い方)
+  - [テスト環境の初期化](#テスト環境の初期化)
+  - [テストの集中と除外](#テストの集中と除外)
   - [カバレッジレポート](#coverage-reporting)
   - [継続的インテグレーション](#continuous-integration)
   - [jsdomの無効化](#disabling-jsdom)
@@ -115,6 +115,12 @@ create-react-appで生成したプロジェクトに追加した内容を記載�
 # yarnだとうまく動かなかったのでnpmで入れ直した。
 # yarn add prop-types
 npm install --save prop-types
+
+# enzymeを使ったテストのために導入
+npm install --save enzyme enzyme-adapter-react-16 react-test-renderer
+
+# jestとenzymeをいい感じにリンクするために導入
+npm install --save jest-enzyme
 ```
 
 ## 新リリースに更新
@@ -1303,53 +1309,63 @@ Similarly to the previous section, you can leave some placeholders in the HTML t
 
 Then, on the server, you can replace `__SERVER_DATA__` with a JSON of real data right before sending the response. The client code can then read `window.SERVER_DATA` to use it. **Make sure to [sanitize the JSON before sending it to the client](https://medium.com/node-security/the-most-common-xss-vulnerability-in-react-js-applications-2bdffbcc1fa0) as it makes your app vulnerable to XSS attacks.**
 
-## Running Tests
+## テスト実行
 
-> Note: this feature is available with `react-scripts@0.3.0` and higher.<br>
+> Note: この昨日は`react-scripts@0.3.0以降で利用できます。<br>
 
-> [Read the migration guide to learn how to enable it in older projects!](https://github.com/facebook/create-react-app/blob/master/CHANGELOG.md#migrating-from-023-to-030)
+> [昔のプロジェクトでそれを有効にする方法は移行ガイドをお読みください。](https://github.com/facebook/create-react-app/blob/master/CHANGELOG.md#migrating-from-023-to-030)
 
-Create React App uses [Jest](https://facebook.github.io/jest/) as its test runner. To prepare for this integration, we did a [major revamp](https://facebook.github.io/jest/blog/2016/09/01/jest-15.html) of Jest so if you heard bad things about it years ago, give it another try.
+`Create React App`はテスト実行に[Jest](https://facebook.github.io/jest/)を使っています。
+統合の準備として、私たちはJestの[大きな改良](https://facebook.github.io/jest/blog/2016/09/01/jest-15.html)を行いました。なので、もしあたなが数年前に悪い噂を聞いた場合は、今一度試してみてください。
 
-Jest is a Node-based runner. This means that the tests always run in a Node environment and not in a real browser. This lets us enable fast iteration speed and prevent flakiness.
+Jestは Nodeベースのランナーです。
+つまり、テストは常にNode環境で実行され、リアルなブラウザーがいらないと言うことです。
+これにより迅速な反復速度を可能にし、脆弱性を防止します。
 
-While Jest provides browser globals such as `window` thanks to [jsdom](https://github.com/tmpvar/jsdom), they are only approximations of the real browser behavior. Jest is intended to be used for unit tests of your logic and your components rather than the DOM quirks.
+Jestは[jsdom](https://github.com/tmpvar/jsdom)のウィンドウのようなブラウザのグローバルを提供していますが、実際のブラウザの動作の概算に過ぎません。 JestはDOMクォークではなくロジックとコンポーネントの単体テストに使用することを意図しています。
 
-We recommend that you use a separate tool for browser end-to-end tests if you need them. They are beyond the scope of Create React App.
+必要に応じて、ブラウザのエンドツーエンドテストに別のツールを使用することをお勧めします。
+こちらはCreate React Appの範囲を超えています。
 
-### Filename Conventions
+### ファイル名の表記規則
 
-Jest will look for test files with any of the following popular naming conventions:
+Jestはテストファイルを以下の一般的な命名規則にしたがって探します。
 
-- Files with `.js` suffix in `__tests__` folders.
-- Files with `.test.js` suffix.
-- Files with `.spec.js` suffix.
+- `__tests__`と言うフォルダの中にある`.js`ファイル
+- `test.js`というsuffixがあるファイル
+- `.spec.js`というsuffixがあるファイル
 
-The `.test.js` / `.spec.js` files (or the `__tests__` folders) can be located at any depth under the `src` top level folder.
+`.test.js`、`.spec.js`ファイル(または`__test__`フォルダ)は最上位のsrcフォルダの下の任意の階層に配置できます。
 
-We recommend to put the test files (or `__tests__` folders) next to the code they are testing so that relative imports appear shorter. For example, if `App.test.js` and `App.js` are in the same folder, the test just needs to `import App from './App'` instead of a long relative path. Colocation also helps find tests more quickly in larger projects.
+テストファイル（または__tests__フォルダ）をテストするコードの隣に置くことにより、相対的なインポートが短く表示されるようにすることをお勧めします。
+たとえば、App.test.jsとApp.jsが同じフォルダにある場合、テストでは長い相対パスの代わりに './App'からAppをインポートするだけです。
+コロケーションは、大規模なプロジェクトでテストをより迅速に見つけるのにも役立ちます。
 
-### Command Line Interface
+### コマンドラインインターフェース
 
-When you run `npm test`, Jest will launch in the watch mode. Every time you save a file, it will re-run the tests, just like `npm start` recompiles the code.
+`npm test`を実行すると、監視モードが起動します。
+ファイルを保存する度に、`npm start`でコードが再コンパイルされるのと同じように、テストが再実行されます。
 
-The watcher includes an interactive command-line interface with the ability to run all tests, or focus on a search pattern. It is designed this way so that you can keep it open and enjoy fast re-runs. You can learn the commands from the “Watch Usage” note that the watcher prints after every run:
+ウォッチャには、すべてのテストを実行する機能、または検索パターンに重点を置くインタラクティブなコマンドラインインターフェイスが含まれています。
+このように設計されているので、開いたままにしておけば、すぐに再実行できます。
+ウォッチャー実行後に表示される「Watch Usage」の項目から各種コマンドを学習することができます。:
 
 ![Jest watch mode](http://facebook.github.io/jest/img/blog/15-watch.gif)
 
-### Version Control Integration
+### バージョンコントロール統合
 
-By default, when you run `npm test`, Jest will only run the tests related to files changed since the last commit. This is an optimization designed to make your tests run fast regardless of how many tests you have. However it assumes that you don’t often commit the code that doesn’t pass the tests.
+デフォルトでは、npm testを実行すると、Jestは最後のコミット以降に変更されたファイルに関連するテストのみを実行します。
+これは、テストの数に関係なく、テストを速く動かすように最適化された設計です。
+ただし、テストに合格しないコードを頻繁にコミットしないことが前提です。
 
-Jest will always explicitly mention that it only ran tests related to the files changed since the last commit. You can also press `a` in the watch mode to force Jest to run all tests.
+Jestは、最後のコミット以降に変更されたファイルに関連するテストのみを実行したことを常に明示します。ウォッチモードでaを押すと、Jestにすべてのテストを強制的に実行させることもできます。
 
-Jest will always run all tests on a [continuous integration](#continuous-integration) server or if the project is not inside a Git or Mercurial repository.
+Jestは、[continuous integration](#continuous-integration)サーバー上で、またはプロジェクトがGitまたはMercurialリポジトリ内にない場合、常にすべてのテストを実行します。
 
-### Writing Tests
-
-To create tests, add `it()` (or `test()`) blocks with the name of the test and its code. You may optionally wrap them in `describe()` blocks for logical grouping but this is neither required nor recommended.
-
-Jest provides a built-in `expect()` global function for making assertions. A basic test could look like this:
+### テストの作成
+テストを作成するには、テスト名とコードを`it()`(または`test()`)ブロックに追加します。
+オプションで論理グループ化のために`describe()`ブロックにラップすることもできますが、これは必須でも推奨もしていません。
+Jestは、アサーションを作成するための組み込みのexpect（）グローバル関数を提供します。基本的なテストは次のようになります。
 
 ```js
 import sum from './sum';
@@ -1360,14 +1376,17 @@ it('sums numbers', () => {
 });
 ```
 
-All `expect()` matchers supported by Jest are [extensively documented here](https://facebook.github.io/jest/docs/en/expect.html#content).<br>
-You can also use [`jest.fn()` and `expect(fn).toBeCalled()`](https://facebook.github.io/jest/docs/en/expect.html#tohavebeencalled) to create “spies” or mock functions.
+Jestでサポートされているexpect（）マッチャーは全て、[ここにドキュメントがあります](https://facebook.github.io/jest/docs/en/expect.html#content)。
 
-### Testing Components
+また[`jest.fn()` and `expect(fn).toBeCalled()`](https://facebook.github.io/jest/docs/en/expect.html#tohavebeencalled)を使って"スパイ"、または"mockファンクション"を作ることができます。
 
-There is a broad spectrum of component testing techniques. They range from a “smoke test” verifying that a component renders without throwing, to shallow rendering and testing some of the output, to full rendering and testing component lifecycle and state changes.
+### コンポーネントのテスト
 
-Different projects choose different testing tradeoffs based on how often components change, and how much logic they contain. If you haven’t decided on a testing strategy yet, we recommend that you start with creating simple smoke tests for your components:
+幅広いコンポーネントテストテクニックがあります。
+コンポーネントはスローされずにレンダリングされていることを確認し、浅いレンダリングや出力の一部のテスト、コンポーネントのライフサイクルと状態の変更の完全なレンダリングとテストまでを含む「スモークテスト」の範囲です。
+
+プロジェクトによって、コンポーネントの変更頻度とそのロジックの量に基づいて、テストのトレードオフが異なります。
+まだテスト戦略を決めていない場合は、コンポーネントの簡単なスモークテストを作成することをおすすめします。:
 
 ```js
 import React from 'react';
@@ -1380,25 +1399,29 @@ it('renders without crashing', () => {
 });
 ```
 
-This test mounts a component and makes sure that it didn’t throw during rendering. Tests like this provide a lot of value with very little effort so they are great as a starting point, and this is the test you will find in `src/App.test.js`.
+このテストはコンポーネントをマウントし、レンダリング中にスローしなかったことを確認します。
 
-When you encounter bugs caused by changing components, you will gain a deeper insight into which parts of them are worth testing in your application. This might be a good time to introduce more specific tests asserting specific expected output or behavior.
+このようなテストは非常に少ない労力で多くの価値を提供するので、出発点としては優れています。これはsrc `/App.test.js`にあるテストです。
 
-If you’d like to test components in isolation from the child components they render, we recommend using [`shallow()` rendering API](http://airbnb.io/enzyme/docs/api/shallow.html) from [Enzyme](http://airbnb.io/enzyme/). To install it, run:
+コンポーネントの変更に起因するバグに遭遇すると、アプリケーションでテストする価値のある部分をより詳細に把握できます。
+これは、特定の期待される出力または動作をアサートする、より具体的なテストを導入するのに良い時期かもしれません。
+
+
+コンポーネントをレンダリングしている子コンポーネントから分離してテストする場合は、[Enzyme](http://airbnb.io/enzyme/)の[`shallow()` rendering API](http://airbnb.io/enzyme/docs/api/shallow.html)を使用することをおすすめします。インストールするには、次のコマンドを実行します。
 
 ```sh
 npm install --save enzyme enzyme-adapter-react-16 react-test-renderer
 ```
 
-Alternatively you may use `yarn`:
+あるいは `yarn`を使用して:
 
 ```sh
 yarn add enzyme enzyme-adapter-react-16 react-test-renderer
 ```
 
-As of Enzyme 3, you will need to install Enzyme along with an Adapter corresponding to the version of React you are using. (The examples above use the adapter for React 16.)
+Enzyme 3では、使用しているReactのバージョンに対応するAdapterとともにEnzymeをインストールする必要があります。 （上記の例では、React 16のアダプタを使用しています）
 
-The adapter will also need to be configured in your [global setup file](#initializing-test-environment):
+アダプタはまた、[global setup file](#initializing-test-environment):で設定する必要があります:
 
 #### `src/setupTests.js`
 
@@ -1408,10 +1431,9 @@ import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
 ```
+> 注意：src / setupTests.jsを作成する前に「eject」することを決めた場合、結果のpackage.jsonファイルには参照が含まれません。「eject」後にこれを追加する方法については、[Read here](#initializing-test-environment) をお読みください。
 
-> Note: Keep in mind that if you decide to "eject" before creating `src/setupTests.js`, the resulting `package.json` file won't contain any reference to it. [Read here](#initializing-test-environment) to learn how to add this after ejecting.
-
-Now you can write a smoke test with it:
+それをスモークテストとして書いてください:
 
 ```js
 import React from 'react';
@@ -1423,11 +1445,14 @@ it('renders without crashing', () => {
 });
 ```
 
-Unlike the previous smoke test using `ReactDOM.render()`, this test only renders `<App>` and doesn’t go deeper. For example, even if `<App>` itself renders a `<Button>` that throws, this test will pass. Shallow rendering is great for isolated unit tests, but you may still want to create some full rendering tests to ensure the components integrate correctly. Enzyme supports [full rendering with `mount()`](http://airbnb.io/enzyme/docs/api/mount.html), and you can also use it for testing state changes and component lifecycle.
+ReactDOM.render（）を使用した以前のスモークテストとは異なり、このテストは<App>をレンダリングするだけで、深くはありません。たとえば、`<App>`自身がスローする`<Button>`をレンダリングしたとしても、このテストは成功します。
+孤立した単体テストには浅いレンダリングが適していますが、コンポーネントが正しく統合されるように、完全なレンダリングテストを作成したい場合もあります。
+Enzymeは、mount（）で[完全なレンダリング]((http://airbnb.io/enzyme/docs/api/mount.html))をサポートしており、状態の変更やコンポーネントのライフサイクルのテストにも使用できます。
 
-You can read the [Enzyme documentation](http://airbnb.io/enzyme/) for more testing techniques. Enzyme documentation uses Chai and Sinon for assertions but you don’t have to use them because Jest provides built-in `expect()` and `jest.fn()` for spies.
+より多くのテスト技術については、[Enzymeのドキュメント](http://airbnb.io/enzyme/)を読むことができます。Enzyneのドキュメントでは、ChaiとSinonをアサーションに使用していますが、Jestはスパイのために組み込みの`expect()`と`jest.fn()`を提供しているため、それらを使用する必要はありません。
 
-Here is an example from Enzyme documentation that asserts specific output, rewritten to use Jest matchers:
+
+以下は、Jest matcherを使用するように書き直された特定の出力を示すEnzymeドキュメントの例です:
 
 ```js
 import React from 'react';
@@ -1442,53 +1467,56 @@ it('renders welcome message', () => {
 });
 ```
 
-All Jest matchers are [extensively documented here](http://facebook.github.io/jest/docs/en/expect.html).<br>
-Nevertheless you can use a third-party assertion library like [Chai](http://chaijs.com/) if you want to, as described below.
+すべてのJestマッチャーは、[extensively documented here](http://facebook.github.io/jest/docs/en/expect.html)
 
-Additionally, you might find [jest-enzyme](https://github.com/blainekasten/enzyme-matchers) helpful to simplify your tests with readable matchers. The above `contains` code can be written more simply with jest-enzyme.
+それにもかかわらず、以下のように、[Chai](http://chaijs.com/)のようなサードパーティのアサーションライブラリを使用することができます。
+
+さらに、[jest-enzyme](https://github.com/blainekasten/enzyme-matchers)が、読み取り可能なマッチャーでテストを簡素化するのに役立つかもしれません。上記のコードはjest-enzymeでより簡単に書くことができます。
+
 
 ```js
 expect(wrapper).toContainReact(welcome);
 ```
 
-To enable this, install `jest-enzyme`:
+これを有効にするには、`jest-enzyme`をインストールします。
 
 ```sh
 npm install --save jest-enzyme
 ```
 
-Alternatively you may use `yarn`:
+あるいは`yarn`を使って:
 
 ```sh
 yarn add jest-enzyme
 ```
 
-Import it in [`src/setupTests.js`](#initializing-test-environment) to make its matchers available in every test:
+src / [`src/setupTests.js`](#initializing-test-environment)にインポートして、すべてのテストでmatcherを利用できるようにします。
 
 ```js
 import 'jest-enzyme';
 ```
 
-### Using Third Party Assertion Libraries
+### サードパーティー製のアサーションライブラリの使い方
 
-We recommend that you use `expect()` for assertions and `jest.fn()` for spies. If you are having issues with them please [file those against Jest](https://github.com/facebook/jest/issues/new), and we’ll fix them. We intend to keep making them better for React, supporting, for example, [pretty-printing React elements as JSX](https://github.com/facebook/jest/pull/1566).
+アサーションには`expect()`、スパイには`jest.fn()`を使用することをお勧めします。彼らに問題がある場合は、[それらをJestに対して](https://github.com/facebook/jest/issues/new)提出してください。修正するつもりです。
+私たちはReactにとってより良いものにしていくつもりです。たとえば、[React要素をJSXとしてサポート]((https://github.com/facebook/jest/pull/1566))しています。
 
-However, if you are used to other libraries, such as [Chai](http://chaijs.com/) and [Sinon](http://sinonjs.org/), or if you have existing code using them that you’d like to port over, you can import them normally like this:
+
+しかし、[Chai](http://chaijs.com/)や[Sinon](http://sinonjs.org/)などの他のライブラリに慣れている場合、または移植したい既存のコードを使用している場合は、通常次のようにインポートすることができます。
 
 ```js
 import sinon from 'sinon';
 import { expect } from 'chai';
 ```
+通常のようにテストで使用してください。
 
-and then use them in your tests like you normally do.
+### テスト環境の初期化
 
-### Initializing Test Environment
+> 注意: この機能は`react-scripts@0.4.0`以上で利用可能です。
 
-> Note: this feature is available with `react-scripts@0.4.0` and higher.
+あなたのアプリケーションがあなたのテストで模擬する必要があるブラウザAPIを使用している場合、またはテストを実行する前にグローバルセットアップが必要な場合は、`src/setupTests.js`をプロジェクトに追加します。テストを実行する前に自動的に実行されます。
 
-If your app uses a browser API that you need to mock in your tests or if you just need a global setup before running your tests, add a `src/setupTests.js` to your project. It will be automatically executed before running your tests.
-
-For example:
+例えば:
 
 #### `src/setupTests.js`
 
@@ -1501,8 +1529,8 @@ const localStorageMock = {
 global.localStorage = localStorageMock;
 ```
 
-> Note: Keep in mind that if you decide to "eject" before creating `src/setupTests.js`, the resulting `package.json` file won't contain any reference to it, so you should manually create the property `setupTestFrameworkScriptFile` in the configuration for Jest, something like the following:
-
+`src/setupTests.js`を作成する前に "取り出す"ことを決めた場合、結果の`package.json`ファイルには参照が含まれていないことに注意してください。
+Jestの設定で`setupTestFrameworkScriptFile`プロパティを手動で作成する必要があります。次のようなものです。
 > ```js
 > "jest": {
 >   // ...
@@ -1510,10 +1538,10 @@ global.localStorage = localStorageMock;
 >  }
 > ```
 
-### Focusing and Excluding Tests
+### テストの集中と除外
 
-You can replace `it()` with `xit()` to temporarily exclude a test from being executed.<br>
-Similarly, `fit()` lets you focus on a specific test without running any other tests.
+テストを実行から一時的に除外するには、`it()`を`xit()`に置き換えることができます。
+同様に、`fit()`を使うと、他のテストを実行することなく特定のテストに集中することができます。
 
 ### Coverage Reporting
 

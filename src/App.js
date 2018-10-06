@@ -57,9 +57,9 @@ class App extends Component
       <div className="part5">
         <MyProp prop1={new Member()} />
         <MyProp prop2="男" />
-        <MyProp prop3={new Member()} />
-        <MyProp prop4={[10, '梅']} />
-        <MyProp prop5={{age:40, sex:'男'}} />
+        <MyProp prop3={true} />
+        <MyProp prop4={[10, 20]} />
+        <MyProp prop5={{name:"山田", age:40, sex:'男'}} />
       </div>
     )
   }
@@ -68,6 +68,7 @@ class App extends Component
     return (
       <div className="App">
         <header className="App-header">
+          <h2>Welcome to React</h2>
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.js</code> and save to reload.
