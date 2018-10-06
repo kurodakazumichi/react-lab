@@ -56,7 +56,7 @@
 - [サーバー上で動的な`<meta>`を生成する](#generating-dynamic-meta-tags-on-the-server)
 - [静的HTMLファイルの事前レンダリング](#pre-rendering-into-static-html-files)
 - [サーバーからページへデータを注入する](#injecting-data-from-the-server-into-the-page)
-- [テストの実行]](#running-tests)
+- [テストの実行](#running-tests)
   - [ファイル名の表記規則](#filename-conventions)
   - [コマンドラインインターフェース](#command-line-interface)
   - [バージョンコントロール統合](#version-control-integration)
