@@ -115,6 +115,9 @@ create-react-appで生成したプロジェクトに追加した内容を記載�
 # yarnだとうまく動かなかったのでnpmで入れ直した。
 # yarn add prop-types
 npm install --save prop-types
+
+# enzymeを使ったテストのために導入
+npm install --save enzyme enzyme-adapter-react-16 react-test-renderer
 ```
 
 ## 新リリースに更新
@@ -1425,10 +1428,9 @@ import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
 ```
+> 注意：src / setupTests.jsを作成する前に「eject」することを決めた場合、結果のpackage.jsonファイルには参照が含まれません。「eject」後にこれを追加する方法については、[Read here](#initializing-test-environment) をお読みください。
 
-> Note: Keep in mind that if you decide to "eject" before creating `src/setupTests.js`, the resulting `package.json` file won't contain any reference to it. [Read here](#initializing-test-environment) to learn how to add this after ejecting.
-
-Now you can write a smoke test with it:
+それをスモークテストとして書いてください:
 
 ```js
 import React from 'react';
@@ -1440,11 +1442,14 @@ it('renders without crashing', () => {
 });
 ```
 
-Unlike the previous smoke test using `ReactDOM.render()`, this test only renders `<App>` and doesn’t go deeper. For example, even if `<App>` itself renders a `<Button>` that throws, this test will pass. Shallow rendering is great for isolated unit tests, but you may still want to create some full rendering tests to ensure the components integrate correctly. Enzyme supports [full rendering with `mount()`](http://airbnb.io/enzyme/docs/api/mount.html), and you can also use it for testing state changes and component lifecycle.
+ReactDOM.render（）を使用した以前のスモークテストとは異なり、このテストは<App>をレンダリングするだけで、深くはありません。たとえば、`<App>`自身がスローする`<Button>`をレンダリングしたとしても、このテストは成功します。
+孤立した単体テストには浅いレンダリングが適していますが、コンポーネントが正しく統合されるように、完全なレンダリングテストを作成したい場合もあります。
+Enzymeは、mount（）で[完全なレンダリング]((http://airbnb.io/enzyme/docs/api/mount.html))をサポートしており、状態の変更やコンポーネントのライフサイクルのテストにも使用できます。
 
-You can read the [Enzyme documentation](http://airbnb.io/enzyme/) for more testing techniques. Enzyme documentation uses Chai and Sinon for assertions but you don’t have to use them because Jest provides built-in `expect()` and `jest.fn()` for spies.
+より多くのテスト技術については、[Enzymeのドキュメント](http://airbnb.io/enzyme/)を読むことができます。Enzyneのドキュメントでは、ChaiとSinonをアサーションに使用していますが、Jestはスパイのために組み込みの`expect()`と`jest.fn()`を提供しているため、それらを使用する必要はありません。
 
-Here is an example from Enzyme documentation that asserts specific output, rewritten to use Jest matchers:
+
+以下は、Jest matcherを使用するように書き直された特定の出力を示すEnzymeドキュメントの例です:
 
 ```js
 import React from 'react';
@@ -1459,28 +1464,30 @@ it('renders welcome message', () => {
 });
 ```
 
-All Jest matchers are [extensively documented here](http://facebook.github.io/jest/docs/en/expect.html).<br>
-Nevertheless you can use a third-party assertion library like [Chai](http://chaijs.com/) if you want to, as described below.
+すべてのJestマッチャーは、[extensively documented here](http://facebook.github.io/jest/docs/en/expect.html)
 
-Additionally, you might find [jest-enzyme](https://github.com/blainekasten/enzyme-matchers) helpful to simplify your tests with readable matchers. The above `contains` code can be written more simply with jest-enzyme.
+それにもかかわらず、以下のように、[Chai](http://chaijs.com/)のようなサードパーティのアサーションライブラリを使用することができます。
+
+さらに、[jest-enzyme](https://github.com/blainekasten/enzyme-matchers)が、読み取り可能なマッチャーでテストを簡素化するのに役立つかもしれません。上記のコードはjest-enzymeでより簡単に書くことができます。
+
 
 ```js
 expect(wrapper).toContainReact(welcome);
 ```
 
-To enable this, install `jest-enzyme`:
+これを有効にするには、`jest-enzyme`をインストールします。
 
 ```sh
 npm install --save jest-enzyme
 ```
 
-Alternatively you may use `yarn`:
+あるいは`yarn`を使って:
 
 ```sh
 yarn add jest-enzyme
 ```
 
-Import it in [`src/setupTests.js`](#initializing-test-environment) to make its matchers available in every test:
+src / [`src/setupTests.js`](#initializing-test-environment)にインポートして、すべてのテストでmatcherを利用できるようにします。
 
 ```js
 import 'jest-enzyme';
