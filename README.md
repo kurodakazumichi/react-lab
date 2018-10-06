@@ -63,7 +63,7 @@
   - [テストの作成](#テストの作成)
   - [コンポーネントのテスト](#コンポーネントのテスト)
   - [サードパーティー製のアサーションライブラリの使い方](#サードパーティー製のアサーションライブラリの使い方)
-  - [テスト環境の初期化](#initializing-test-environment)
+  - [テスト環境の初期化](#テスト環境の初期化)
   - [テストの集中と除外](#focusing-and-excluding-tests)
   - [カバレッジレポート](#coverage-reporting)
   - [継続的インテグレーション](#continuous-integration)
@@ -1510,13 +1510,13 @@ import { expect } from 'chai';
 ```
 通常のようにテストで使用してください。
 
-### Initializing Test Environment
+### テスト環境の初期化
 
-> Note: this feature is available with `react-scripts@0.4.0` and higher.
+> 注意: この機能は`react-scripts@0.4.0`以上で利用可能です。
 
-If your app uses a browser API that you need to mock in your tests or if you just need a global setup before running your tests, add a `src/setupTests.js` to your project. It will be automatically executed before running your tests.
+あなたのアプリケーションがあなたのテストで模擬する必要があるブラウザAPIを使用している場合、またはテストを実行する前にグローバルセットアップが必要な場合は、`src/setupTests.js`をプロジェクトに追加します。テストを実行する前に自動的に実行されます。
 
-For example:
+例えば:
 
 #### `src/setupTests.js`
 
@@ -1529,8 +1529,8 @@ const localStorageMock = {
 global.localStorage = localStorageMock;
 ```
 
-> Note: Keep in mind that if you decide to "eject" before creating `src/setupTests.js`, the resulting `package.json` file won't contain any reference to it, so you should manually create the property `setupTestFrameworkScriptFile` in the configuration for Jest, something like the following:
-
+`src/setupTests.js`を作成する前に "取り出す"ことを決めた場合、結果の`package.json`ファイルには参照が含まれていないことに注意してください。
+Jestの設定で`setupTestFrameworkScriptFile`プロパティを手動で作成する必要があります。次のようなものです。
 > ```js
 > "jest": {
 >   // ...
