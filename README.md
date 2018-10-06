@@ -56,7 +56,7 @@
 - [サーバー上で動的な`<meta>`を生成する](#generating-dynamic-meta-tags-on-the-server)
 - [静的HTMLファイルの事前レンダリング](#pre-rendering-into-static-html-files)
 - [サーバーからページへデータを注入する](#injecting-data-from-the-server-into-the-page)
-- [テストの実行]](#running-tests)
+- [テストの実行](#テスト実行)
   - [ファイル名の表記規則](#filename-conventions)
   - [コマンドラインインターフェース](#command-line-interface)
   - [バージョンコントロール統合](#version-control-integration)
@@ -1303,19 +1303,23 @@ Similarly to the previous section, you can leave some placeholders in the HTML t
 
 Then, on the server, you can replace `__SERVER_DATA__` with a JSON of real data right before sending the response. The client code can then read `window.SERVER_DATA` to use it. **Make sure to [sanitize the JSON before sending it to the client](https://medium.com/node-security/the-most-common-xss-vulnerability-in-react-js-applications-2bdffbcc1fa0) as it makes your app vulnerable to XSS attacks.**
 
-## Running Tests
+## テスト実行
 
-> Note: this feature is available with `react-scripts@0.3.0` and higher.<br>
+> Note: この昨日は`react-scripts@0.3.0以降で利用できます。<br>
 
-> [Read the migration guide to learn how to enable it in older projects!](https://github.com/facebook/create-react-app/blob/master/CHANGELOG.md#migrating-from-023-to-030)
+> [昔のプロジェクトでそれを有効にする方法は移行ガイドをお読みください。](https://github.com/facebook/create-react-app/blob/master/CHANGELOG.md#migrating-from-023-to-030)
 
-Create React App uses [Jest](https://facebook.github.io/jest/) as its test runner. To prepare for this integration, we did a [major revamp](https://facebook.github.io/jest/blog/2016/09/01/jest-15.html) of Jest so if you heard bad things about it years ago, give it another try.
+`Create React App`はテスト実行に[Jest](https://facebook.github.io/jest/)を使っています。
+統合の準備として、私たちはJestの[大きな改良](https://facebook.github.io/jest/blog/2016/09/01/jest-15.html)を行いました。なので、もしあたなが数年前に悪い噂を聞いた場合は、今一度試してみてください。
 
-Jest is a Node-based runner. This means that the tests always run in a Node environment and not in a real browser. This lets us enable fast iteration speed and prevent flakiness.
+Jestは Nodeベースのランナーです。
+つまり、テストは常にNode環境で実行され、リアルなブラウザーがいらないと言うことです。
+これにより迅速な反復速度を可能にし、脆弱性を防止します。
 
-While Jest provides browser globals such as `window` thanks to [jsdom](https://github.com/tmpvar/jsdom), they are only approximations of the real browser behavior. Jest is intended to be used for unit tests of your logic and your components rather than the DOM quirks.
+Jestは[jsdom](https://github.com/tmpvar/jsdom)のウィンドウのようなブラウザのグローバルを提供していますが、実際のブラウザの動作の概算に過ぎません。 JestはDOMクォークではなくロジックとコンポーネントの単体テストに使用することを意図しています。
 
-We recommend that you use a separate tool for browser end-to-end tests if you need them. They are beyond the scope of Create React App.
+必要に応じて、ブラウザのエンドツーエンドテストに別のツールを使用することをお勧めします。
+こちらはCreate React Appの範囲を超えています。
 
 ### Filename Conventions
 
