@@ -25,5 +25,6 @@ MyProp.propTypes = {
     prop3: PropTypes.oneOfType([
         PropTypes.string, PropTypes.number, PropTypes.bool
     ]),
-
+    /** numberの配列であること */
+    prop4: PropTypes.arrayOf(PropTypes.number)
 }
