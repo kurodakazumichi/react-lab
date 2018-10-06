@@ -3,14 +3,14 @@ import logo from './logo.svg';
 import './App.css';
 
 // Part4 import list
-import MyHelloText from './atoms/Text/MyHelloText'
-import MyTypeDebug from './atoms/Debug/MyTypeDebug';
-import MyAttrText from './atoms/Text/MyAttrText';
-import MyHelloContentText from './atoms/Text/MyHelloContentText';
-import MyBook from './molecules/MyBooks/MyBooks';
+import MyHelloText from './components/atoms/Text/MyHelloText'
+import MyTypeDebug from './components/atoms/Debug/MyTypeDebug';
+import MyAttrText from './components/atoms/Text/MyAttrText';
+import MyHelloContentText from './components/atoms/Text/MyHelloContentText';
+import MyBook from './components/molecules/MyBooks/MyBooks';
 
 // Part5 import list
-import MyProp, { Member } from './atoms/Debug/MyProp';
+import MyProp, { Member } from './components/atoms/Debug/MyProp'
 
 /**
  * アプリケーション
