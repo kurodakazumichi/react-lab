@@ -58,7 +58,7 @@
 - [サーバーからページへデータを注入する](#injecting-data-from-the-server-into-the-page)
 - [テストの実行](#テスト実行)
   - [ファイル名の表記規則](#ファイル名の表記規則)
-  - [コマンドラインインターフェース](#command-line-interface)
+  - [コマンドラインインターフェース](#コマンドラインインターフェース)
   - [バージョンコントロール統合](#version-control-integration)
   - [テストの作成](#writing-tests)
   - [コンポーネントのテスト](#testing-components)
@@ -1335,11 +1335,14 @@ Jestはテストファイルを以下の一般的な命名規則にしたがっ�
 たとえば、App.test.jsとApp.jsが同じフォルダにある場合、テストでは長い相対パスの代わりに './App'からAppをインポートするだけです。
 コロケーションは、大規模なプロジェクトでテストをより迅速に見つけるのにも役立ちます。
 
-### Command Line Interface
+### コマンドラインインターフェース
 
-When you run `npm test`, Jest will launch in the watch mode. Every time you save a file, it will re-run the tests, just like `npm start` recompiles the code.
+`npm test`を実行すると、監視モードが起動します。
+ファイルを保存する度に、`npm start`でコードが再コンパイルされるのと同じように、テストが再実行されます。
 
-The watcher includes an interactive command-line interface with the ability to run all tests, or focus on a search pattern. It is designed this way so that you can keep it open and enjoy fast re-runs. You can learn the commands from the “Watch Usage” note that the watcher prints after every run:
+ウォッチャには、すべてのテストを実行する機能、または検索パターンに重点を置くインタラクティブなコマンドラインインターフェイスが含まれています。
+このように設計されているので、開いたままにしておけば、すぐに再実行できます。
+ウォッチャー実行後に表示される「Watch Usage」の項目から各種コマンドを学習することができます。:
 
 ![Jest watch mode](http://facebook.github.io/jest/img/blog/15-watch.gif)
 
