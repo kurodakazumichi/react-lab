@@ -123,9 +123,9 @@ create-react-app自体を更新する必要はほとんどありません。す�
 
 改ざんの変更を最小限に抑えることで、反応スクリプトを無駄なくアップグレードできるようにします。
 
-## Sending Feedback
+## フィードバックを送信する
 
-We are always open to [your feedback](https://github.com/facebook/create-react-app/issues).
+私たちはあなたの[フィードバック](https://github.com/facebook/create-react-app/issues)に常に耳を傾けています。
 
 ## Folder Structure
 
