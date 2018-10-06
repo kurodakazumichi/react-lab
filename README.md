@@ -61,7 +61,7 @@
   - [コマンドラインインターフェース](#コマンドラインインターフェース)
   - [バージョンコントロール統合](#バージョンコントロール統合)
   - [テストの作成](#テストの作成)
-  - [コンポーネントのテスト](#testing-components)
+  - [コンポーネントのテスト](#コンポーネントのテスト)
   - [サードパーティー製のアサーションライブラリの使い方](#using-third-party-assertion-libraries)
   - [テスト環境の初期化](#initializing-test-environment)
   - [テストの集中と除外](#focusing-and-excluding-tests)
@@ -1374,11 +1374,13 @@ Jestでサポートされているexpect（）マッチャーは全て、[ここ
 
 また[`jest.fn()` and `expect(fn).toBeCalled()`](https://facebook.github.io/jest/docs/en/expect.html#tohavebeencalled)を使って"スパイ"、または"mockファンクション"を作ることができます。
 
-### Testing Components
+### コンポーネントのテスト
 
-There is a broad spectrum of component testing techniques. They range from a “smoke test” verifying that a component renders without throwing, to shallow rendering and testing some of the output, to full rendering and testing component lifecycle and state changes.
+幅広いコンポーネントテストテクニックがあります。
+コンポーネントはスローされずにレンダリングされていることを確認し、浅いレンダリングや出力の一部のテスト、コンポーネントのライフサイクルと状態の変更の完全なレンダリングとテストまでを含む「スモークテスト」の範囲です。
 
-Different projects choose different testing tradeoffs based on how often components change, and how much logic they contain. If you haven’t decided on a testing strategy yet, we recommend that you start with creating simple smoke tests for your components:
+プロジェクトによって、コンポーネントの変更頻度とそのロジックの量に基づいて、テストのトレードオフが異なります。
+まだテスト戦略を決めていない場合は、コンポーネントの簡単なスモークテストを作成することをおすすめします。:
 
 ```js
 import React from 'react';
@@ -1391,25 +1393,29 @@ it('renders without crashing', () => {
 });
 ```
 
-This test mounts a component and makes sure that it didn’t throw during rendering. Tests like this provide a lot of value with very little effort so they are great as a starting point, and this is the test you will find in `src/App.test.js`.
+このテストはコンポーネントをマウントし、レンダリング中にスローしなかったことを確認します。
 
-When you encounter bugs caused by changing components, you will gain a deeper insight into which parts of them are worth testing in your application. This might be a good time to introduce more specific tests asserting specific expected output or behavior.
+このようなテストは非常に少ない労力で多くの価値を提供するので、出発点としては優れています。これはsrc `/App.test.js`にあるテストです。
 
-If you’d like to test components in isolation from the child components they render, we recommend using [`shallow()` rendering API](http://airbnb.io/enzyme/docs/api/shallow.html) from [Enzyme](http://airbnb.io/enzyme/). To install it, run:
+コンポーネントの変更に起因するバグに遭遇すると、アプリケーションでテストする価値のある部分をより詳細に把握できます。
+これは、特定の期待される出力または動作をアサートする、より具体的なテストを導入するのに良い時期かもしれません。
+
+
+コンポーネントをレンダリングしている子コンポーネントから分離してテストする場合は、[Enzyme](http://airbnb.io/enzyme/)の[`shallow()` rendering API](http://airbnb.io/enzyme/docs/api/shallow.html)を使用することをおすすめします。インストールするには、次のコマンドを実行します。
 
 ```sh
 npm install --save enzyme enzyme-adapter-react-16 react-test-renderer
 ```
 
-Alternatively you may use `yarn`:
+あるいは `yarn`を使用して:
 
 ```sh
 yarn add enzyme enzyme-adapter-react-16 react-test-renderer
 ```
 
-As of Enzyme 3, you will need to install Enzyme along with an Adapter corresponding to the version of React you are using. (The examples above use the adapter for React 16.)
+Enzyme 3では、使用しているReactのバージョンに対応するAdapterとともにEnzymeをインストールする必要があります。 （上記の例では、React 16のアダプタを使用しています）
 
-The adapter will also need to be configured in your [global setup file](#initializing-test-environment):
+アダプタはまた、[global setup file](#initializing-test-environment):で設定する必要があります:
 
 #### `src/setupTests.js`
 
