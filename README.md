@@ -62,7 +62,7 @@
   - [バージョンコントロール統合](#バージョンコントロール統合)
   - [テストの作成](#テストの作成)
   - [コンポーネントのテスト](#コンポーネントのテスト)
-  - [サードパーティー製のアサーションライブラリの使い方](#using-third-party-assertion-libraries)
+  - [サードパーティー製のアサーションライブラリの使い方](#サードパーティー製のアサーションライブラリの使い方)
   - [テスト環境の初期化](#initializing-test-environment)
   - [テストの集中と除外](#focusing-and-excluding-tests)
   - [カバレッジレポート](#coverage-reporting)
@@ -118,6 +118,9 @@ npm install --save prop-types
 
 # enzymeを使ったテストのために導入
 npm install --save enzyme enzyme-adapter-react-16 react-test-renderer
+
+# jestとenzymeをいい感じにリンクするために導入
+npm install --save jest-enzyme
 ```
 
 ## 新リリースに更新
@@ -1493,18 +1496,19 @@ src / [`src/setupTests.js`](#initializing-test-environment)にインポートし
 import 'jest-enzyme';
 ```
 
-### Using Third Party Assertion Libraries
+### サードパーティー製のアサーションライブラリの使い方
 
-We recommend that you use `expect()` for assertions and `jest.fn()` for spies. If you are having issues with them please [file those against Jest](https://github.com/facebook/jest/issues/new), and we’ll fix them. We intend to keep making them better for React, supporting, for example, [pretty-printing React elements as JSX](https://github.com/facebook/jest/pull/1566).
+アサーションには`expect()`、スパイには`jest.fn()`を使用することをお勧めします。彼らに問題がある場合は、[それらをJestに対して](https://github.com/facebook/jest/issues/new)提出してください。修正するつもりです。
+私たちはReactにとってより良いものにしていくつもりです。たとえば、[React要素をJSXとしてサポート]((https://github.com/facebook/jest/pull/1566))しています。
 
-However, if you are used to other libraries, such as [Chai](http://chaijs.com/) and [Sinon](http://sinonjs.org/), or if you have existing code using them that you’d like to port over, you can import them normally like this:
+
+しかし、[Chai](http://chaijs.com/)や[Sinon](http://sinonjs.org/)などの他のライブラリに慣れている場合、または移植したい既存のコードを使用している場合は、通常次のようにインポートすることができます。
 
 ```js
 import sinon from 'sinon';
 import { expect } from 'chai';
 ```
-
-and then use them in your tests like you normally do.
+通常のようにテストで使用してください。
 
 ### Initializing Test Environment
 
