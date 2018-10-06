@@ -59,7 +59,7 @@
 - [テストの実行](#テスト実行)
   - [ファイル名の表記規則](#ファイル名の表記規則)
   - [コマンドラインインターフェース](#コマンドラインインターフェース)
-  - [バージョンコントロール統合](#version-control-integration)
+  - [バージョンコントロール統合](#バージョンコントロール統合)
   - [テストの作成](#writing-tests)
   - [コンポーネントのテスト](#testing-components)
   - [サードパーティー製のアサーションライブラリの使い方](#using-third-party-assertion-libraries)
@@ -1346,13 +1346,15 @@ Jestはテストファイルを以下の一般的な命名規則にしたがっ�
 
 ![Jest watch mode](http://facebook.github.io/jest/img/blog/15-watch.gif)
 
-### Version Control Integration
+### バージョンコントロール統合
 
-By default, when you run `npm test`, Jest will only run the tests related to files changed since the last commit. This is an optimization designed to make your tests run fast regardless of how many tests you have. However it assumes that you don’t often commit the code that doesn’t pass the tests.
+デフォルトでは、npm testを実行すると、Jestは最後のコミット以降に変更されたファイルに関連するテストのみを実行します。
+これは、テストの数に関係なく、テストを速く動かすように最適化された設計です。
+ただし、テストに合格しないコードを頻繁にコミットしないことが前提です。
 
-Jest will always explicitly mention that it only ran tests related to the files changed since the last commit. You can also press `a` in the watch mode to force Jest to run all tests.
+Jestは、最後のコミット以降に変更されたファイルに関連するテストのみを実行したことを常に明示します。ウォッチモードでaを押すと、Jestにすべてのテストを強制的に実行させることもできます。
 
-Jest will always run all tests on a [continuous integration](#continuous-integration) server or if the project is not inside a Git or Mercurial repository.
+Jestは、[continuous integration](#continuous-integration)サーバー上で、またはプロジェクトがGitまたはMercurialリポジトリ内にない場合、常にすべてのテストを実行します。
 
 ### Writing Tests
 
