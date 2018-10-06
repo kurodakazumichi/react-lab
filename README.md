@@ -112,7 +112,9 @@
 create-react-appで生成したプロジェクトに追加した内容を記載します。
 
 ```
-yarn add prop-types
+# yarnだとうまく動かなかったのでnpmで入れ直した。
+# yarn add prop-types
+npm install --save prop-types
 ```
 
 ## 新リリースに更新
