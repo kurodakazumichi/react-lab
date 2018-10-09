@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MyHelloText /> Testing MyHelloText renders correctoly 1`] = `
+<div>
+  こんにちは、
+  名無しの権兵衛
+  さん!
+</div>
+`;
