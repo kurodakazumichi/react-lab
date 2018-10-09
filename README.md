@@ -68,7 +68,7 @@
   - [カバレッジレポート](#coverage-reporting)
   - [継続的インテグレーション](#continuous-integration)
   - [jsdomの無効化](#disabling-jsdom)
-  - [スナップショットテスト](#snapshot-testing)
+  - [スナップショットテスト](#スナップショットテスト)
   - [エディター統合](#editor-integration)
 - [デバッグテスト実行](#debugging-tests)
   - [クロームでのデバッグテスト](#debugging-tests-in-chrome)
@@ -1688,9 +1688,11 @@ In contrast, **jsdom is not needed** for the following APIs:
 
 Finally, jsdom is also not needed for [snapshot testing](http://facebook.github.io/jest/blog/2016/07/27/jest-14.html).
 
-### Snapshot Testing
+### スナップショットテスト
 
-Snapshot testing is a feature of Jest that automatically generates text snapshots of your components and saves them on the disk so if the UI output changes, you get notified without manually writing any assertions on the component output. [Read more about snapshot testing.](http://facebook.github.io/jest/blog/2016/07/27/jest-14.html)
+スナップショットテストは、コンポーネントのテキストスナップショットを自動的に生成してディスクに保存するJestの機能です。
+したがって、UI出力が変更された場合は、コンポーネント出力にアサーションを手動で書き込むことなく通知されます。
+[スナップショットテストの詳細を読む](http://facebook.github.io/jest/blog/2016/07/27/jest-14.html)
 
 ### Editor Integration
 
