@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 // Part4 import list
-import MyHelloText from './components/atoms/Text/MyHelloText'
+import MyHelloText from './components/atoms/Text/MyHelloText/MyHelloText'
 import MyTypeDebug from './components/atoms/Debug/MyTypeDebug';
 import MyAttrText from './components/atoms/Text/MyAttrText';
 import MyHelloContentText from './components/atoms/Text/MyHelloContentText';
@@ -11,6 +11,9 @@ import MyBook from './components/molecules/MyBooks/MyBooks';
 
 // Part5 import list
 import MyProp, { Member } from './components/atoms/Debug/MyProp'
+
+// Part6 import list
+import MyArticle from './components/molecules/MyArticle/MyArticle';
 
 /**
  * アプリケーション
@@ -64,6 +67,49 @@ class App extends Component
     )
   }
 
+  /**
+   * 速習React part6
+   */
+  part6() {
+
+    const articles = [
+      { 
+        url         : 'https://reactjs.org/', 
+        title       : 'React',
+        description : 'React公式サイト',
+        isNew       : true,
+      },
+      {
+        url         : 'https://mobx.js.org/',
+        title       : 'mobx',
+        description : 'mobx公式サイト'
+      },
+      {
+        url         : 'https://jestjs.io/',
+        title       : 'Jest',
+        description : 'Jest公式サイト'
+      },
+      {
+        url         : 'https://airbnb.io/enzyme/',
+        title       : 'Enzyme',
+        description : 'Enzymeリファレンス'
+      },
+      {
+        url         : 'https://storybook.js.org/',
+        title       : 'storybook',
+        description : 'storybook公式'
+      }
+    ];
+
+    const list = articles.map((article) => <MyArticle {...article} key={article.url} />);
+
+    return (
+      <div className="part6">
+        <dl>{list}</dl>
+      </div>
+    )
+  }
+
   render() {
     return (
       <div className="App">
@@ -86,6 +132,7 @@ class App extends Component
 
           {this.part4()}
           {this.part5()}
+          {this.part6()}
         </div>
       </div>
     );
