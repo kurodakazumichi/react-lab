@@ -15,13 +15,19 @@ import MyProp, { Member } from './components/practice/Debug/MyProp'
 // Part6 import list
 import MyArticle from './components/practice/MyArticle/MyArticle';
 
-// Pawrt7 import list
+// Part7 import list
 import MyEvent from './components/practice/MyEvent/MyEvent';
 import MyPool from './components/practice/MyPool/MyPool';
 import MyState from './components/practice/MyState/MyState';
 import MyParent from './components/practice/MyParent/MyParent';
 import MyForm from './components/practice/MyForm/MyForm';
 import MyFormUn from './components/practice/MyFormUn/MyFormUn';
+
+// Part8 import list
+import MyTextarea from './components/practice/MyTextArea/MyTextArea';
+import MySelect from './components/practice/MySelect/MySelect';
+import MyList from './components/practice/MyList/MyList';
+
 
 /**
  * アプリケーション
@@ -134,6 +140,19 @@ class App extends Component
     );
   }
 
+  /**
+   * 速習React part8
+   */
+  part8() {
+    return (
+      <div className="part8">
+        <MyTextarea />
+        <MySelect />
+        <MyList />
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className="App">
@@ -158,6 +177,7 @@ class App extends Component
           {this.part5()}
           {this.part6()}
           {this.part7()}
+          {this.part8()}
         </div>
       </div>
     );
