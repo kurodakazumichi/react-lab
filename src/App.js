@@ -27,6 +27,7 @@ import MyFormUn from './components/practice/MyFormUn/MyFormUn';
 import MyTextarea from './components/practice/MyTextArea/MyTextArea';
 import MySelect from './components/practice/MySelect/MySelect';
 import MyList from './components/practice/MyList/MyList';
+import MyRadio from './components/practice/MyRadio/MyRadio';
 
 
 /**
@@ -149,6 +150,7 @@ class App extends Component
         <MyTextarea />
         <MySelect />
         <MyList />
+        <MyRadio />
       </div>
     );
   }
