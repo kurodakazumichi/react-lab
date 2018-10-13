@@ -28,6 +28,7 @@ import MyTextarea from './components/practice/MyTextArea/MyTextArea';
 import MySelect from './components/practice/MySelect/MySelect';
 import MyList from './components/practice/MyList/MyList';
 import MyRadio from './components/practice/MyRadio/MyRadio';
+import MyCheck from './components/practice/MyCheck/MyCheck';
 
 
 /**
@@ -151,6 +152,7 @@ class App extends Component
         <MySelect />
         <MyList />
         <MyRadio />
+        <MyCheck />
       </div>
     );
   }
