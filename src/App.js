@@ -3,17 +3,25 @@ import logo from './logo.svg';
 import './App.css';
 
 // Part4 import list
-import MyHelloText from './components/atoms/Text/MyHelloText/MyHelloText'
-import MyTypeDebug from './components/atoms/Debug/MyTypeDebug';
-import MyAttrText from './components/atoms/Text/MyAttrText';
-import MyHelloContentText from './components/atoms/Text/MyHelloContentText';
-import MyBook from './components/molecules/MyBooks/MyBooks';
+import MyHelloText from './components/practice/Text/MyHelloText/MyHelloText'
+import MyTypeDebug from './components/practice/Debug/MyTypeDebug';
+import MyAttrText from './components/practice/Text/MyAttrText';
+import MyHelloContentText from './components/practice/Text/MyHelloContentText';
+import MyBook from './components/practice/MyBooks/MyBooks';
 
 // Part5 import list
-import MyProp, { Member } from './components/atoms/Debug/MyProp'
+import MyProp, { Member } from './components/practice/Debug/MyProp'
 
 // Part6 import list
-import MyArticle from './components/molecules/MyArticle/MyArticle';
+import MyArticle from './components/practice/MyArticle/MyArticle';
+
+// Pawrt7 import list
+import MyEvent from './components/practice/MyEvent/MyEvent';
+import MyPool from './components/practice/MyPool/MyPool';
+import MyState from './components/practice/MyState/MyState';
+import MyParent from './components/practice/MyParent/MyParent';
+import MyForm from './components/practice/MyForm/MyForm';
+import MyFormUn from './components/practice/MyFormUn/MyFormUn';
 
 /**
  * アプリケーション
@@ -110,6 +118,22 @@ class App extends Component
     )
   }
 
+  /**
+   * 速習React part7
+   */
+  part7 (){
+    return (
+      <div className="part7">
+        <MyEvent greet="Hello" />
+        <MyPool />
+        <MyState />
+        <MyParent />
+        <MyForm />
+        <MyFormUn />
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className="App">
@@ -133,6 +157,7 @@ class App extends Component
           {this.part4()}
           {this.part5()}
           {this.part6()}
+          {this.part7()}
         </div>
       </div>
     );

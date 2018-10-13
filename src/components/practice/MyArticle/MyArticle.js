@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MyNew from '../../atoms/Icon/MyNew/MyNew';
+import MyNew from '../MyNew/MyNew';
 
 export default class MyArticle extends Component
 {

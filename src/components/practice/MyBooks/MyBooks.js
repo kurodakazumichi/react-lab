@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MyCover from '../../atoms/Image/MyCover';
+import MyCover from '../Image/MyCover'
 
 export default class MyBook extends Component
 {
