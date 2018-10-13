@@ -32,6 +32,9 @@ import MyCheck from './components/practice/MyCheck/MyCheck';
 import MyCheckMulti from './components/practice/MyCheckMulti/MyCheckMulti';
 import MyFile from './components/practice/MyFile/MyFile';
 
+// Part9 import list
+import MyLife from './components/practice/MyLife/MyLife';
+
 
 /**
  * アプリケーション
@@ -161,6 +164,16 @@ class App extends Component
     );
   }
 
+  /**
+   * 速習React part9
+   */
+  part9() {
+    return (
+      <div className="part9">
+        <MyLife />
+      </div>
+    );
+  }
   render() {
     return (
       <div className="App">
@@ -180,12 +193,12 @@ class App extends Component
           </a>
         </header>
         <div>
-
           {this.part4()}
           {this.part5()}
           {this.part6()}
           {this.part7()}
           {this.part8()}
+          {this.part9()}
         </div>
       </div>
     );
