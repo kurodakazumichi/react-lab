@@ -121,6 +121,9 @@ npm install --save enzyme enzyme-adapter-react-16 react-test-renderer
 
 # jestとenzymeをいい感じにリンクするために導入
 npm install --save jest-enzyme
+
+# reactのルーティングを有効にするために導入
+npm install --save react-router-dom
 ```
 
 ## 新リリースに更新
