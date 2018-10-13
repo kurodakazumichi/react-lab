@@ -29,6 +29,7 @@ import MySelect from './components/practice/MySelect/MySelect';
 import MyList from './components/practice/MyList/MyList';
 import MyRadio from './components/practice/MyRadio/MyRadio';
 import MyCheck from './components/practice/MyCheck/MyCheck';
+import MyCheckMulti from './components/practice/MyCheckMulti/MyCheckMulti';
 
 
 /**
@@ -153,6 +154,7 @@ class App extends Component
         <MyList />
         <MyRadio />
         <MyCheck />
+        <MyCheckMulti />
       </div>
     );
   }
