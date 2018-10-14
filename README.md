@@ -128,6 +128,23 @@ npm install --save react-router-dom
 # mobxを導入
 npm install --save mobx
 npm install --save mobx-react
+
+# decoratorを有効にするbabelのプラグインを追加
+npm install --saveDev babel-plugin-transform-decorators-legacy
+```
+
+### bableの設定
+
+package.jsonに下記を追加
+```diff
+"babel": {
++  "plugins": [
++    "transform-decorators-legacy"
++  ],
+  "presets": [
+    "react-app"
+  ]
+}
 ```
 
 ## 新リリースに更新
