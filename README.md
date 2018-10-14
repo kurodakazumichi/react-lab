@@ -130,7 +130,7 @@ npm install --save mobx
 npm install --save mobx-react
 
 # decoratorを有効にするbabelのプラグインを追加
-npm install --saveDev babel-plugin-transform-decorators-legacy
+npm install --saveDev @babel/plugin-proposal-decorators
 ```
 
 ### bableの設定
@@ -139,7 +139,7 @@ package.jsonに下記を追加
 ```diff
 "babel": {
 +  "plugins": [
-+    "transform-decorators-legacy"
++    ["@babel/plugin-proposal-decorators", { "legacy": true }]
 +  ],
   "presets": [
     "react-app"
