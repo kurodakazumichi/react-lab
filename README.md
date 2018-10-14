@@ -124,6 +124,10 @@ npm install --save jest-enzyme
 
 # reactのルーティングを有効にするために導入
 npm install --save react-router-dom
+
+# mobxを導入
+npm install --save mobx
+npm install --save mobx-react
 ```
 
 ## 新リリースに更新
