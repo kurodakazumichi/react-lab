@@ -7,6 +7,7 @@
     "enzyme-adapter-react-16": "^1.6.0",
     "jest-enzyme": "^6.1.2",
     "mobx": "^5.5.0",
+    "mobx-react": "^5.2.8",
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
