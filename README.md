@@ -131,6 +131,9 @@ npm install --save mobx-react
 
 # decoratorを有効にするbabelのプラグインを追加
 npm install --saveDev @babel/plugin-proposal-decorators
+
+# class propertiesを有効にするbabelのプラグインを追加(必須ではない？)
+npm install --save-dev @babel/plugin-proposal-class-properties
 ```
 
 ### bableの設定
@@ -139,7 +142,8 @@ package.jsonに下記を追加
 ```diff
 "babel": {
 +  "plugins": [
-+    ["@babel/plugin-proposal-decorators", { "legacy": true }]
++    ["@babel/plugin-proposal-decorators", { "legacy": true }],
++    ["@babel/plugin-proposal-class-properties", { "loose": true} ]
 +  ],
   "presets": [
     "react-app"

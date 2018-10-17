@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import TodoList from '../TodoList';
+import Counter, { appState } from '../Counter/Counter';
+import TodoList from '../TodoList/TodoList';
+import TodoStore from '../TodoList/TodoStore';
 
 export default class Mobx extends Component
 {
@@ -13,7 +15,8 @@ export default class Mobx extends Component
     return (
       <div>
         <h1>Mobx</h1>
-        <TodoList />
+        <Counter store={appState} />
+        <TodoList store={TodoStore} />
       </div>
     );
   }
