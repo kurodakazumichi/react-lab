@@ -63,7 +63,9 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -113,8 +115,18 @@
   },
   "babel": {
     "plugins": [
-      ["@babel/plugin-proposal-decorators", { "legacy": true } ],
-      ["@babel/plugin-proposal-class-properties", { "loose": true} ]
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ],
+      [
+        "@babel/plugin-proposal-class-properties",
+        {
+          "loose": true
+        }
+      ]
     ],
     "presets": [
       "react-app"
@@ -122,6 +134,11 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.1.0",
-    "@babel/plugin-proposal-decorators": "^7.1.2"
+    "@babel/plugin-proposal-decorators": "^7.1.2",
+    "@storybook/react": "^3.4.11",
+    "@storybook/addon-actions": "^3.4.11",
+    "@storybook/addon-links": "^3.4.11",
+    "@storybook/addons": "^3.4.11",
+    "babel-runtime": "^6.26.0"
   }
 }

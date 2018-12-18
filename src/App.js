@@ -4,13 +4,14 @@ import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import Top from './components/pages/Top/Top';
 import Practice from './components/practice/Practice/Practice';
 import Mobx from './components/mobx/Mobx/Mobx';
-
+import InputText from './components/atoms/InputText'
 export default class App extends Component
 {
   render() {
     return (
       <Router>
         <div>
+          <InputText onChange={(e) => { console.log(e.target.value)} }/>
           <ul>
             <li><Link to="/">トップ</Link></li>
             <li><Link to="/practice">練習</Link></li>
